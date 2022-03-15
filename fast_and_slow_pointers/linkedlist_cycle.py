@@ -6,17 +6,27 @@ class Node:
 
 def has_cycle(head):
   # TODO: Write your code here
-    h_map = {}
+    # h_map = {}
     
-    nodes = []
+    # nodes = []
 
-    while head:
-        if head in h_map and head.next == h_map[head]:
-            return True
+    # while head:
+    #     if head in h_map and head.next == h_map[head]:
+    #         return True
         
-        h_map[head] = head.next
+    #     h_map[head] = head.next
 
-        head = head.next
+    #     head = head.next
+
+    # return False
+
+    slow_pointer,fast_pointer = head,head
+
+    while fast_pointer and fast_pointer.next:
+        fast_pointer = fast_pointer.next.next
+        slow_pointer = slow_pointer.next
+        if fast_pointer == slow_pointer:
+            return True
 
     return False
 
