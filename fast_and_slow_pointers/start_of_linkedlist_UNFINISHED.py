@@ -18,14 +18,39 @@ def find_cycle_start(head):
     # TODO: Write your code here
 
     #hash map method
-    h_map = {}
+    # h_map = {}
     
-    while head:
-        if head in h_map:
-            return head
-        h_map[head] = 1
-        head = head.next
+    # while head:
+    #     if head in h_map:
+    #         return head
+    #     h_map[head] = 1
+    #     head = head.next
 
+    # return None
+
+    slow_pointer, fast_pointer = head,head
+    idx = 0
+    
+    start_finish_nodes = []
+
+    while fast_pointer and fast_pointer.next:
+        fast_pointer = fast_pointer.next.next
+        slow_pointer = slow_pointer.next
+        idx += 1
+
+        if slow_pointer == fast_pointer:
+            if slow_pointer in start_finish_nodes:
+                break
+            else:
+                start_finish_nodes.append(slow_pointer)
+                
+    slow_pointer = head
+    while slow_pointer:
+        if slow_pointer in start_finish_nodes:
+            return slow_pointer
+        
+        slow_pointer = slow_pointer.next
+        
     return None
 
 
