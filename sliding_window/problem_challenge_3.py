@@ -15,6 +15,8 @@ class Solution:
             else:
                 h_map[char] += 1
         
+        #the substring needs to have all or more of the characters in hmap
+
         while lw<len(str1)-1:
             if str1[rw] in h_map:
                 h_map[str1[rw]] += 1
