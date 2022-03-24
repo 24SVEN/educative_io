@@ -8,23 +8,20 @@ class Solution:
         lw,total,rw = 0,0,0
         smallest_length = float('inf')
 
-        for rw in range(len(arr)):
-            rw += 1
-            while total < s:
-                total += arr[rw]
+        while rw < len(arr):
+
+            total += arr[rw]
                 
+            while total >= s:
+                smallest_length = min(smallest_length,rw-lw+1)
+                total -= arr[lw]
+                lw+=1
             
-            smallest_length = min(smallest_length,rw-lw+1)
-            total -= arr[lw]
-            lw +=1
-
-
-
+            rw +=1
 
         return smallest_length
 
-
 test = Solution()
-print(test.smallest_subarray_sum(7,[2, 1, 5, 2, 3, 2]))
-# print(test.smallest_subarray_sum(7,[2, 1, 5, 2, 8]))
-# print(test.smallest_subarray_sum(8,[3, 4, 1, 1, 6]))
+print(test.smallest_subarray_sum(7,[2, 1, 5, 2, 3, 2])) #2
+print(test.smallest_subarray_sum(7,[2, 1, 5, 2, 8])) #1
+print(test.smallest_subarray_sum(8,[3, 4, 1, 1, 6])) #3
