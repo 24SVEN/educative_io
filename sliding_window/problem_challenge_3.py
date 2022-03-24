@@ -5,30 +5,40 @@ class Solution:
         # TODO: Write your code here
 
         lw,rw = 0,0
-
+        smallest_substring = str1
         h_map = {}
+
+        #convert list to dictionary
         for char in pattern:
-            if char in h_map:
-                h_map[char]+=1
+            if char not in h_map:
+                h_map[char]= 1
             else:
-                h_map[char]=1
+                h_map[char] += 1
         
         while lw<len(str1)-1:
             if str1[rw] in h_map:
-                h_map[str1[rw]]-=1
-                if h_map[str1[rw]] == 0:
-                    del h_map[str1[rw]]
-            rw+=1
-            if len(h_map)==0:
-                while lw<rw:
-                    if str1[lw] not in h_map:
+                h_map[str1[rw]] += 1
+
+            
+            if all([val >= 0 for val in h_map.values()]):
+            
+                while lw<rw and all([val >= 0 for val in h_map.values()]):
+                    if len(smallest_substring) > len(str1[lw:rw+1]):
+                        smallest_substring = str1[lw:rw+1]
+
+
+                    if str1[lw] in h_map:
+                        h_map[str1[lw]] -= 1
                         lw+=1
                     else:
-                        return str1[lw:rw+1]
+                        h_map[str1[lw-1]]+=1
 
 
-        return ""
+            rw+=1
+
+
+        return smallest_substring
 
 
 test = Solution()
-print(test.find_substring())
+print(test.find_substring('aabdec','abc'))

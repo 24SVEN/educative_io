@@ -26,9 +26,9 @@ class Solution():
 
 def main():
     test = Solution()
-    #print(test.solve_knapsack([1, 6, 10, 16], [1, 2, 3, 5], 5))
-    #print(test.solve_knapsack([1, 6, 10, 16], [1, 2, 3, 5], 6))
-    print(test.solve_knapsack([1, 6, 10, 16], [1, 2, 3, 5], 7))
+    print(test.solve_knapsack([1, 6, 10, 16], [1, 2, 3, 5], 5))
+    print(test.solve_knapsack([1, 6, 10, 16], [1, 2, 3, 5], 61))
+    print(test.solve_knapsack([1, 6, 10, 16], [1, 2, 3, 5], 100))
 
 
 main()
