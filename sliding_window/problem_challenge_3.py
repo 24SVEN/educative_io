@@ -1,3 +1,4 @@
+#Leet code 76. Minimum Window Substring
 # Given a string and a pattern, find the smallest substring in the given string which has all the character occurrences of the given pattern.
 
 # Input: String="aabdec", Pattern="abc"
@@ -15,10 +16,7 @@ class Solution:
 
         #convert list to dictionary
         for char in pattern:
-            if char not in h_map:
-                h_map[char]= 1
-            else:
-                h_map[char] += 1
+            h_map[char] = 1 + h_map.get(char,0)
         
         #the substring needs to have all or more of the characters in hmap
 
@@ -29,10 +27,7 @@ class Solution:
             #only add to the dictionary if it's a required character
             rw_char = str1[rw]
             if rw_char in h_map:
-                if rw_char not in check_map:
-                    check_map[rw_char]= 1
-                else:
-                    check_map[rw_char] += 1
+                check_map[rw_char] = 1 + check_map.get(rw_char,0)
 
             while self.check_if_valid(h_map,check_map):
                 smallest_substring = smallest_substring if len(smallest_substring) < (rw-lw+1) else str1[lw:rw+1]
