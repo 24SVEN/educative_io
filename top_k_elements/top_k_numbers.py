@@ -1,12 +1,15 @@
-from heapq import *
+import heapq
 
 
 def find_k_largest_numbers(nums, k):
-    result = []
-    # TODO: Write your code here
-    nums.sort()
+      result = []
+      # TODO: Write your code here
+      heapq.heapify(nums)
 
-    return nums[-k:]
+      for i in range(len(nums)-k):
+            heapq.heappop(nums)
+
+      return nums
 
 
 def main():
