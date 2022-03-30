@@ -11,12 +11,18 @@ import heapq
 def find_closest_points(points, k):
     result = []
     # TODO: Write your code here
-    sqrt = [((point.x ** 2) + (point.y ** 2)) **.5 for point in points]
+    min_heap = []
+    for point in points:
+      c = (point.x ** 2 + point.y ** 2) ** .5
+      min_heap.append([c,point])
 
+    heapq.heapify(min_heap)
 
-    hashmap = dict(zip(points,sqrt))
-
-    return [point for point,val in sorted(hashmap.items(),key = lambda x : x[1])][-k:]
+    while k > 0:
+      dist,point = heapq.heappop(min_heap)
+      result.append(point)
+      k-=1
+    return result
 
 
 def main():
