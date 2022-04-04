@@ -1,4 +1,6 @@
 
+#These are all getting timeout errors on leetcode. Need to review
+#https://leetcode.com/problems/kth-largest-element-in-a-stream/submissions/
 import heapq
 class KthLargestNumberInStream:
     def __init__(self, nums, k):

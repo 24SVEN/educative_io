@@ -2,24 +2,30 @@
 def search_min_diff_element(arr, key):
     # TODO: Write your code here
 
+    if arr[-1] < key:
+        return arr[-1]
+    if arr[0] > key:
+        return arr[0]
+
     lw,rw=0,len(arr)
-    prev_diff = float('inf')
 
-    while lw<=rw:
-        mid=(rw+lw)//2
-        diff = abs(arr[mid]-key)
+    while lw<rw:
+        mid=lw + (rw-lw)//2
+
         #difference is growing again
-        if diff > prev_diff or diff == 0:
+        if arr[mid] == key:
             return arr[mid]
-        elif diff > arr[mid]:
-            lw = mid + 1
-            prev_diff=diff
-        else:
+        elif arr[mid] > key:
             rw = mid-1
-            prev_diff=diff
+        else:
+            lw = mid + 1
+
+    if abs(key - arr[lw]) > abs(key-arr[rw]):
+        return arr[rw]
+    else:
+        return arr[lw]
 
 
-    return -1
 
 
 def main():
