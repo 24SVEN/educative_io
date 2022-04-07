@@ -1,20 +1,11 @@
 def find_single_number(arr):
     # TODO: Write your code here
-    # bit_val = 0
-    # for i in range(len(arr)):
-    #     bit_val = bit_val ^ arr[i]
-    # return bit_val
+    
+    base_num = 0
 
-    dic_bit = {}
-
-    for i in range(len(arr)):
-        if arr[i] in dic_bit:
-            dic_bit[arr[i]] -= 1
-            del dic_bit[arr[i]]
-        else:
-            dic_bit[arr[i]] = 1
-
-    return [key for key in dic_bit.keys()][0]
+    for num in arr:
+        base_num = num ^ base_num
+    return base_num
 
 def main():
     arr = [1, 4, 2, 1, 3, 2, 3]
