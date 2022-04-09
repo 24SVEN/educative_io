@@ -12,20 +12,27 @@ def is_palindromic_linked_list(head):
     # TODO: Write your code here
     start = head
     slow,fast = head,head
+    copy = head
+
+    def reverse_linked_list(head):
+      prev = None
+      while head:
+        temp = head
+        head = head.next
+        temp.next = prev
+        prev = temp
+      
+      return prev
 
     while fast and fast.next:
       fast = fast.next.next
       slow = slow.next
 
-
     mid = slow
 
-    prev = None
-    while mid:
-      temp = mid
-      mid = mid.next
-      temp.next = prev
-      prev = temp
+
+    prev = reverse_linked_list(mid)
+    copy = prev
     
     #prev is now starting point
     while prev:
@@ -34,6 +41,12 @@ def is_palindromic_linked_list(head):
       prev = prev.next
       start = start.next
     
+    reverse_linked_list(copy)
+
+    while copy:
+      print(copy.value)
+      copy = copy.next
+
     return True
 
 
@@ -45,10 +58,10 @@ def main():
   head.next.next.next = Node(4)
   head.next.next.next.next = Node(2)
 
-  #print("Is palindrome: " + str(is_palindromic_linked_list(head)))
-
-  head.next.next.next.next.next = Node(2)
   print("Is palindrome: " + str(is_palindromic_linked_list(head)))
+
+  # head.next.next.next.next.next = Node(2)
+  # print("Is palindrome: " + str(is_palindromic_linked_list(head)))
 
 
 main()
