@@ -6,8 +6,29 @@ class TreeNode:
 
 
 def find_path(root, sequence):
+  
+
+  def dfs(root,path,sequence):
+    if root is None:
+      return path
+
+    path.append(root.val)
+    if root.left:
+      dfs(root.left,path)
+    if root.right:
+      dfs(root.right,path)
+
+    if path == sequence:
+      return True
+
+    else:
+      return False
+  
+  return dfs(root,[],sequence)
+
   # TODO: Write your code here
   return False  
+
 
 
 def main():
